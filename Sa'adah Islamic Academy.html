@@ -1,0 +1,2463 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>As sa'adah Islamic Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Nunito+Sans:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        --bg: #faf7f0;
+        --surface: #ffffff;
+        --text: #1c2a24;
+        --muted: #5d6b64;
+        --line: #e4ddcc;
+        --primary: #0b5d46;
+        --primary-ink: #ffffff;
+        --gold: #b8862b;
+        --soft: #eef5f0;
+        --danger: #b3261e;
+        --ok: #1b7a4b;
+        --radius: 16px;
+        --display: "Amiri", Georgia, "Times New Roman", serif;
+        --body:
+          "Nunito Sans", system-ui, -apple-system, "Segoe UI", Roboto,
+          sans-serif;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #0d1612;
+          --surface: #14221c;
+          --text: #e8efe9;
+          --muted: #a2b3aa;
+          --line: #25382f;
+          --primary: #3fae88;
+          --primary-ink: #06231a;
+          --gold: #d9ad54;
+          --soft: #192a22;
+          --danger: #ff8a80;
+          --ok: #6fd49c;
+        }
+      }
+      :root[data-theme="dark"] {
+        --bg: #0d1612;
+        --surface: #14221c;
+        --text: #e8efe9;
+        --muted: #a2b3aa;
+        --line: #25382f;
+        --primary: #3fae88;
+        --primary-ink: #06231a;
+        --gold: #d9ad54;
+        --soft: #192a22;
+        --danger: #ff8a80;
+        --ok: #6fd49c;
+      }
+      html {
+        scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 70px);
+        scroll-behavior: smooth;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--body);
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-text-size-adjust: 100%;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: var(--display);
+        line-height: 1.2;
+        margin: 0 0 0.5em;
+      }
+      h2 {
+        font-size: clamp(1.7rem, 5vw, 2.4rem);
+      }
+      h3 {
+        font-size: 1.3rem;
+      }
+      p {
+        margin: 0 0 1em;
+      }
+      a {
+        color: inherit;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      .wrap {
+        width: 100%;
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .ar {
+        font-family: var(--display);
+        direction: rtl;
+      }
+
+      /* header */
+      .top {
+        position: sticky;
+        top: env(safe-area-inset-top, 0px);
+        z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+      }
+      .top .wrap {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        height: 62px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--primary);
+        cursor: pointer;
+        background: none;
+        border: 0;
+        padding: 0;
+      }
+      .brand svg {
+        width: 34px;
+        height: 34px;
+        flex: none;
+      }
+      .links {
+        display: none;
+        margin-left: auto;
+        gap: 22px;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+      .links a {
+        text-decoration: none;
+        color: var(--muted);
+      }
+      .links a:hover {
+        color: var(--primary);
+      }
+      .spacer {
+        flex: 1;
+      }
+      .iconbtn {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        color: var(--text);
+        font-size: 1.1rem;
+        cursor: pointer;
+      }
+      .drawer {
+        display: none;
+        border-top: 1px solid var(--line);
+        background: var(--bg);
+      }
+      .drawer.open {
+        display: block;
+      }
+      .drawer a {
+        display: block;
+        padding: 14px 20px;
+        text-decoration: none;
+        font-weight: 600;
+        border-bottom: 1px solid var(--line);
+      }
+      .wa-float {
+        position: fixed;
+        right: 22px;
+        bottom: 26px;
+        z-index: 40;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 62px;
+        height: 62px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #25d366, #128c7e);
+        color: white;
+        box-shadow: 0 12px 28px rgba(18, 140, 126, 0.35);
+        text-decoration: none;
+        animation: waPop 1.8s ease-in-out infinite;
+      }
+      .wa-float:hover {
+        transform: translateY(-2px) scale(1.02);
+      }
+      .wa-float svg {
+        width: 28px;
+        height: 28px;
+        display: block;
+      }
+      @keyframes waPop {
+        0%,
+        100% {
+          transform: translateY(0px) scale(1);
+          box-shadow: 0 12px 24px rgba(18, 140, 126, 0.3);
+        }
+        50% {
+          transform: translateY(-8px) scale(1.04);
+          box-shadow: 0 18px 32px rgba(18, 140, 126, 0.4);
+        }
+      }
+      @media (min-width: 820px) {
+        .links {
+          display: flex;
+        }
+        .menu {
+          display: none;
+        }
+        .drawer {
+          display: none !important;
+        }
+      }
+
+      /* buttons & fields */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 44px;
+        padding: 0 20px;
+        border-radius: 12px;
+        border: 1px solid var(--primary);
+        background: var(--primary);
+        color: var(--primary-ink);
+        font: 700 0.95rem var(--body);
+        cursor: pointer;
+        text-decoration: none;
+      }
+      .btn.ghost {
+        background: transparent;
+        color: var(--primary);
+      }
+      .btn.gold {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: #1b1405;
+      }
+      .btn.danger {
+        background: transparent;
+        color: var(--danger);
+        border-color: var(--danger);
+      }
+      .btn.sm {
+        min-height: 36px;
+        padding: 0 12px;
+        font-size: 0.85rem;
+        border-radius: 10px;
+      }
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--muted);
+        margin-bottom: 4px;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        min-height: 44px;
+        padding: 8px 12px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--surface);
+        color: var(--text);
+        font: inherit;
+        font-size: 16px;
+      }
+      input:focus,
+      select:focus {
+        outline: 2px solid var(--primary);
+        outline-offset: 1px;
+      }
+      .fgrid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 640px) {
+        .fgrid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .fgrid.three {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+      }
+
+      /* hero */
+      .hero {
+        background: linear-gradient(
+          160deg,
+          #08432f 0%,
+          #0b5d46 55%,
+          #0f7357 100%
+        );
+        color: #fbf5e6;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23d9ad54' stroke-opacity='.25' stroke-width='1'%3E%3Crect x='20' y='20' width='40' height='40'/%3E%3Crect x='20' y='20' width='40' height='40' transform='rotate(45 40 40)'/%3E%3C/g%3E%3C/svg%3E");
+        opacity: 0.7;
+      }
+      .hero .wrap {
+        position: relative;
+        padding-top: 56px;
+        padding-bottom: 64px;
+        text-align: center;
+      }
+      .bism {
+        font-family: var(--display);
+        font-size: 1.5rem;
+        color: #e8c677;
+        margin-bottom: 18px;
+        direction: rtl;
+      }
+      .hero h1 {
+        font-family: var(--display);
+        font-size: clamp(2.3rem, 9vw, 4.2rem);
+        margin: 0 0 6px;
+      }
+      .hero .arname {
+        font-family: var(--display);
+        font-size: clamp(1.4rem, 5vw, 2rem);
+        color: #e8c677;
+        direction: rtl;
+        margin-bottom: 18px;
+      }
+      .hero p.lead {
+        max-width: 620px;
+        margin: 0 auto 26px;
+        font-size: 1.1rem;
+        opacity: 0.92;
+      }
+      .cta {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .hero .btn.ghost {
+        color: #fbf5e6;
+        border-color: #fbf5e6;
+      }
+
+      section.s {
+        padding: 56px 0;
+      }
+      section.s.alt {
+        background: var(--soft);
+      }
+      .eyebrow {
+        display: inline-block;
+        font-weight: 800;
+        font-size: 0.75rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 8px;
+      }
+      .cards {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 640px) {
+        .cards {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (min-width: 960px) {
+        .cards.c4 {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .cards.c3 {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 20px;
+      }
+      .card .ico {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--soft);
+        display: grid;
+        place-items: center;
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+      }
+      .card h3 {
+        margin-bottom: 6px;
+      }
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      .steps {
+        counter-reset: s;
+        display: grid;
+        gap: 14px;
+      }
+      .step {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+      }
+      .step::before {
+        counter-increment: s;
+        content: counter(s);
+        flex: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: var(--primary-ink);
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+      }
+      .step b {
+        display: block;
+      }
+      .two {
+        display: grid;
+        gap: 28px;
+      }
+      @media (min-width: 820px) {
+        .two {
+          grid-template-columns: 1fr 1fr;
+          align-items: center;
+        }
+      }
+      .quote {
+        border-left: 4px solid var(--gold);
+        padding: 6px 0 6px 18px;
+        font-family: var(--display);
+        font-size: 1.35rem;
+      }
+      footer.foot {
+        background: #08432f;
+        color: #e9e2cf;
+        padding: 36px 0 calc(36px + env(safe-area-inset-bottom, 0px));
+        font-size: 0.9rem;
+      }
+      footer.foot a {
+        color: #e8c677;
+      }
+
+      /* portal */
+      .portal {
+        padding: 28px 0 60px;
+        min-height: 70vh;
+      }
+      .login {
+        max-width: 480px;
+        margin: 0 auto;
+      }
+      .roles {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .roles button {
+        min-height: 48px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        color: var(--text);
+        font: 700 0.9rem var(--body);
+        cursor: pointer;
+      }
+      .roles button.on {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: var(--primary-ink);
+      }
+      .dash-head {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+      .dash-head h2 {
+        margin: 4px 0 0;
+        font-size: 1.6rem;
+      }
+      .pill {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 3px 10px;
+        border-radius: 99px;
+        background: var(--soft);
+        color: var(--primary);
+        border: 1px solid var(--line);
+      }
+      .tabs {
+        display: flex;
+        gap: 6px;
+        overflow-x: auto;
+        padding-bottom: 6px;
+        margin-bottom: 16px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .tabs button {
+        flex: none;
+        min-height: 42px;
+        padding: 0 16px;
+        border-radius: 99px;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        color: var(--text);
+        font: 700 0.9rem var(--body);
+        cursor: pointer;
+      }
+      .tabs button.on {
+        background: var(--primary);
+        color: var(--primary-ink);
+        border-color: var(--primary);
+      }
+      .stats {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: 1fr 1fr;
+      }
+      @media (min-width: 760px) {
+        .stats {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .stat {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 14px;
+      }
+      .stat b {
+        display: block;
+        font-size: 1.6rem;
+        font-family: var(--display);
+      }
+      .stat span {
+        font-size: 0.8rem;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .tw {
+        overflow-x: auto;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--surface);
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        min-width: 520px;
+        font-size: 0.92rem;
+      }
+      th,
+      td {
+        padding: 10px 12px;
+        text-align: left;
+        border-bottom: 1px solid var(--line);
+        vertical-align: middle;
+      }
+      th {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        background: var(--soft);
+      }
+      tr:last-child td {
+        border-bottom: 0;
+      }
+      td input[type="number"] {
+        width: 84px;
+        min-height: 38px;
+        padding: 4px 8px;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .row.end {
+        justify-content: flex-end;
+      }
+      .neg {
+        color: var(--danger);
+        font-weight: 700;
+      }
+      .pos {
+        color: var(--ok);
+        font-weight: 700;
+      }
+      .seg {
+        display: inline-flex;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .seg label {
+        margin: 0;
+        padding: 0;
+        position: relative;
+      }
+      .seg input {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        min-height: 0;
+      }
+      .seg span {
+        display: block;
+        padding: 8px 14px;
+        font-weight: 800;
+        font-size: 0.85rem;
+        color: var(--muted);
+        cursor: pointer;
+        background: var(--surface);
+      }
+      .seg input:checked + span.p {
+        background: var(--ok);
+        color: #fff;
+      }
+      .seg input:checked + span.a {
+        background: var(--danger);
+        color: #fff;
+      }
+      .seg input:checked + span.l {
+        background: var(--gold);
+        color: #1b1405;
+      }
+      .note {
+        background: var(--soft);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px 14px;
+        font-size: 0.88rem;
+        color: var(--muted);
+      }
+      .gap {
+        margin-top: 16px;
+      }
+      .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 0;
+      }
+      .sheet {
+        background: var(--surface);
+        color: var(--text);
+        width: 100%;
+        max-width: 520px;
+        max-height: 90vh;
+        overflow: auto;
+        border-radius: 20px 20px 0 0;
+        padding: 22px 20px calc(22px + env(safe-area-inset-bottom, 0px));
+      }
+      @media (min-width: 640px) {
+        .modal {
+          align-items: center;
+          padding: 20px;
+        }
+        .sheet {
+          border-radius: 20px;
+        }
+      }
+      .code {
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 1.4rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        background: var(--soft);
+        border: 1px dashed var(--gold);
+        border-radius: 12px;
+        padding: 10px 14px;
+        display: inline-block;
+        margin: 4px 0;
+      }
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+        transform: translateX(-50%);
+        background: #16241e;
+        color: #fff;
+        padding: 12px 18px;
+        border-radius: 12px;
+        z-index: 60;
+        max-width: 90vw;
+        font-size: 0.92rem;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      }
+      .avg {
+        font-family: var(--display);
+        font-size: 1.6rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <div class="wrap">
+        <button
+          class="brand"
+          data-act="home"
+          aria-label="Sa'adah Islamic Academy home"
+        >
+          <svg
+            viewBox="0 0 40 40"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            aria-hidden="true"
+          >
+            <rect
+              x="9"
+              y="9"
+              width="22"
+              height="22"
+              style="stroke: var(--gold)"
+            />
+            <rect
+              x="9"
+              y="9"
+              width="22"
+              height="22"
+              transform="rotate(45 20 20)"
+            />
+            <circle cx="20" cy="20" r="3.5" fill="currentColor" stroke="none" />
+          </svg>
+          <span>Sa'adah Academy</span>
+        </button>
+        <nav class="links" id="links">
+          <a href="#about" data-act="anchor">About</a>
+          <a href="#programmes" data-act="anchor">Programmes</a>
+          <a href="#values" data-act="anchor">Values</a>
+          <a href="#admissions" data-act="anchor">Admissions</a>
+          <a href="#contact" data-act="anchor">Contact</a>
+        </nav>
+        <span class="spacer"></span>
+        <button class="iconbtn" data-act="theme" aria-label="Toggle dark mode">
+          ◐
+        </button>
+        <button class="btn sm" id="portalBtn" data-act="portal">
+          Portal Login
+        </button>
+        <button class="iconbtn menu" data-act="menu" aria-label="Menu">
+          ☰
+        </button>
+      </div>
+      <div class="drawer" id="drawer">
+        <a href="#about" data-act="anchor">About</a>
+        <a href="#programmes" data-act="anchor">Programmes</a>
+        <a href="#values" data-act="anchor">Values</a>
+        <a href="#admissions" data-act="anchor">Admissions</a>
+        <a href="#contact" data-act="anchor">Contact</a>
+      </div>
+    </header>
+
+    <!-- ================= PUBLIC HOME ================= -->
+    <a
+      class="wa-float"
+      href="https://wa.me/2349130578594"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat on WhatsApp"
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path
+          d="M20.52 3.48A11.63 11.63 0 0 0 12.06 0C5.76 0 .66 5.1.66 11.4a11.3 11.3 0 0 0 1.52 5.73L.4 23.5l6.54-1.72A11.4 11.4 0 0 0 12.06 24c6.3 0 11.4-5.1 11.4-11.4 0-3.04-1.18-5.9-3.34-8.12ZM12.06 21.1a9.6 9.6 0 0 1-4.9-1.34l-.35-.2-3.88 1.02 1.03-3.8-.23-.38A9.6 9.6 0 0 1 2.46 11.4a9.66 9.66 0 1 1 17.05 6.84 9.5 9.5 0 0 1-7.45 2.86Zm5.3-7.18c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.9 1.13-.17.19-.33.21-.62.07-.29-.15-1.23-.45-2.34-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.15-.17.2-.29.3-.48.1-.2.05-.37-.02-.52-.07-.15-.64-1.54-.88-2.1-.23-.55-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.37-.26.3-1 1-1 2.43 0 1.43 1.02 2.82 1.16 3.01.15.19 2 3.08 4.87 4.32.68.29 1.21.47 1.63.6.68.22 1.3.19 1.79.12.55-.08 1.7-.7 1.94-1.38.23-.68.23-1.27.16-1.39-.07-.12-.26-.19-.55-.34Z"
+        />
+      </svg>
+    </a>
+    <main id="home">
+      <section class="hero">
+        <div class="wrap">
+          <div class="bism">بسم الله الرحمن الرحيم</div>
+          <h1>As-sa'adah Islamic Academy</h1>
+          <div class="arname">رب زدني علما</div>
+          <p class="lead">
+            Raising confident, knowledgeable and righteous children, grounded in
+            the Qur'an and the Sunnah, excelling in modern education.
+          </p>
+          <div class="cta">
+            <a class="btn gold" href="#admissions" data-act="admission-open"
+              >Apply for Admission</a
+            >
+            <a class="btn ghost" href="#about" data-act="anchor"
+              >Discover Our School</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="s" id="about">
+        <div class="wrap two">
+          <div>
+            <span class="eyebrow">About us</span>
+            <h2>A school where faith and learning grow together</h2>
+            <p>
+              Sa'adah Islamic Academy brings together a strong academic
+              curriculum and a firm Islamic upbringing. Every child is guided to
+              know their Lord, love their deen, respect their parents and
+              teachers, and pursue excellence in every field of knowledge.
+            </p>
+            <p>
+              Our teachers work closely with parents so that what is taught in
+              the classroom is lived at home, and progress is shared openly
+              through our online parent portal.
+            </p>
+          </div>
+          <div class="quote">
+            “Whoever travels a path seeking knowledge, Allah makes easy for him
+            a path to Paradise.”
+            <div
+              class="muted"
+              style="
+                font-size: 0.9rem;
+                font-family: var(--body);
+                margin-top: 6px;
+              "
+            >
+              Hadith, Sahih Muslim
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="s alt" id="programmes">
+        <div class="wrap">
+          <span class="eyebrow">Programmes</span>
+          <h2>From first steps to graduation</h2>
+          <div class="cards c3">
+            <div class="card">
+              <div class="ico">🧸</div>
+              <h3>Early Years</h3>
+              <p>
+                Play-based learning, early Arabic letters, short surahs, duas
+                and good manners in a warm, safe setting.
+              </p>
+            </div>
+            <div class="card">
+              <div class="ico">📘</div>
+              <h3>Primary School</h3>
+              <p>
+                Literacy, numeracy and science alongside Qur'an recitation,
+                Islamic studies and Arabic.
+              </p>
+            </div>
+            <div class="card">
+              <div class="ico">🔬</div>
+              <h3>Junior Secondary</h3>
+              <p>
+                A broad curriculum that builds study skills, critical thinking
+                and leadership with strong Islamic values.
+              </p>
+            </div>
+            <div class="card">
+              <div class="ico">🎓</div>
+              <h3>Senior Secondary</h3>
+              <p>
+                Focused subject tracks and exam preparation, with mentoring for
+                university and career choices.
+              </p>
+            </div>
+            <div class="card">
+              <div class="ico">📖</div>
+              <h3>Qur'an &amp; Tajweed</h3>
+              <p>
+                Daily recitation, memorisation and tajweed classes led by
+                qualified teachers.
+              </p>
+            </div>
+            <div class="card">
+              <div class="ico">🕌</div>
+              <h3>Islamic Studies</h3>
+              <p>
+                Aqeedah, fiqh, seerah, hadith and Arabic language taught step by
+                step for every age group.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="s" id="values">
+        <div class="wrap">
+          <span class="eyebrow">Our values</span>
+          <h2>What we stand for</h2>
+          <div class="cards c4">
+            <div class="card">
+              <div class="ico">🌙</div>
+              <h3>Iman</h3>
+              <p>Faith in Allah at the centre of every lesson and every day.</p>
+            </div>
+            <div class="card">
+              <div class="ico">💡</div>
+              <h3>Ilm</h3>
+              <p>Knowledge pursued with curiosity, discipline and humility.</p>
+            </div>
+            <div class="card">
+              <div class="ico">🤝</div>
+              <h3>Akhlaq</h3>
+              <p>
+                Honesty, kindness and respect, shown in how we speak and act.
+              </p>
+            </div>
+            <div class="card">
+              <div class="ico">🛡️</div>
+              <h3>Amanah</h3>
+              <p>
+                Trust and responsibility toward family, school and community.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="s alt">
+        <div class="wrap">
+          <span class="eyebrow">Why families choose us</span>
+          <h2>Highlights</h2>
+          <div class="cards c3">
+            <div class="card">
+              <div class="ico">👩🏽‍🏫</div>
+              <h3>Caring teachers</h3>
+              <p>
+                Dedicated staff who know every child by name and guide them with
+                patience.
+              </p>
+            </div>
+            <div class="card">
+              <div class="ico">📊</div>
+              <h3>Transparent progress</h3>
+              <p>
+                Parents view their children's results securely online each term.
+              </p>
+            </div>
+            <div class="card">
+              <div class="ico">🏫</div>
+              <h3>Safe environment</h3>
+              <p>
+                A clean, disciplined and supportive campus where children feel
+                at home.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="s" id="admissions">
+        <div class="wrap two">
+          <div>
+            <span class="eyebrow">Admissions</span>
+            <h2>Join the Sa'adah family</h2>
+            <p>
+              Admission is open to boys and girls. Follow these simple steps to
+              enrol your child.
+            </p>
+            <a class="btn" href="#contact" data-act="anchor">Make an enquiry</a>
+            <button class="btn gold" type="button" data-act="admission-open">
+              Apply now
+            </button>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div>
+                <b>Enquire</b
+                ><span class="muted"
+                  >Contact the school office or visit us.</span
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div>
+                <b>Visit &amp; assessment</b
+                ><span class="muted"
+                  >Meet our teachers and a short placement assessment.</span
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div>
+                <b>Submit documents</b
+                ><span class="muted"
+                  >Birth certificate, passport photographs and previous school
+                  report.</span
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div>
+                <b>Welcome</b
+                ><span class="muted"
+                  >Receive your parent portal login and start date.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="s alt" id="contact">
+        <div class="wrap two">
+          <div>
+            <span class="eyebrow">Contact</span>
+            <h2>We'd love to hear from you</h2>
+            <p class="muted">Visit, call or write to the school office.</p>
+          </div>
+          <div class="card" id="contactCard"></div>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <div class="wrap">
+          <div class="row" style="justify-content: space-between">
+            <div>
+              © <span id="yr"></span> Sa'adah Islamic Academy. All rights
+              reserved.
+            </div>
+            <a href="#" data-act="portal">Portal Login</a>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- ================= LOGIN ================= -->
+    <main id="login" class="portal" hidden>
+      <div class="wrap login">
+        <h2>School Portal</h2>
+        <p class="muted">Sign in to your dashboard.</p>
+        <div class="roles" id="roles">
+          <button data-act="role" data-role="parent" class="on">Parent</button>
+          <button data-act="role" data-role="teacher">Teacher</button>
+          <button data-act="role" data-role="admin">Admin</button>
+        </div>
+        <div class="card" id="loginBody"></div>
+      </div>
+    </main>
+
+    <!-- ================= DASHBOARDS ================= -->
+    <main id="dash" class="portal" hidden>
+      <div class="wrap" id="dashBody"></div>
+    </main>
+
+    <script src="portal-db.js"></script>
+    <script>
+      /* ---------- School settings: edit these ---------- */
+      const CFG = {
+        currency: "₦",
+        address: "GBOBI STREET, OGELE, EYENKORIN, ILORIN, KWARA STATE",
+        phone: "09130578594",
+        email: "ruftech support@gmail.com",
+        hours: "Monday – Friday, 7:30am – 3:30pm",
+        classes: [
+          "Nursery 1",
+          "Nursery 2",
+          "Primary 1",
+          "Primary 2",
+          "Primary 3",
+          "Primary 4",
+          "Primary 5",
+          "Primary 6",
+          "JSS 1",
+          "JSS 2",
+          "JSS 3",
+          "SS 1",
+          "SS 2",
+          "SS 3",
+        ],
+        terms: ["First Term", "Second Term", "Third Term"],
+        subjects: [
+          "English Language",
+          "Mathematics",
+          "Basic Science",
+          "Social Studies",
+          "Qur'an",
+          "Islamic Studies",
+          "Arabic",
+          "Civic Education",
+          "Computer Studies",
+          "Agricultural Science",
+          "Physics",
+          "Chemistry",
+          "Biology",
+          "Economics",
+          "Government",
+          "Literature in English",
+          "Hadith",
+          "Fiqh",
+        ],
+        maxCA: 40,
+        maxExam: 60,
+        grades: [
+          [70, "A", "Excellent"],
+          [60, "B", "Very Good"],
+          [50, "C", "Good"],
+          [45, "D", "Fair"],
+          [40, "E", "Pass"],
+          [0, "F", "Fail"],
+        ],
+      };
+
+      /* ---------- helpers ---------- */
+      const $ = (s, r = document) => r.querySelector(s);
+      const esc = (s) =>
+        String(s ?? "").replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      const slug = (s) =>
+        String(s)
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, "");
+      const money = (n) =>
+        (n < 0 ? "-" : "") +
+        CFG.currency +
+        Math.abs(Number(n || 0)).toLocaleString();
+      const gradeOf = (t) => CFG.grades.find((g) => t >= g[0]);
+      const byName = (a, b) => String(a.name).localeCompare(String(b.name));
+      const today = () => new Date().toLocaleDateString("en-CA");
+      const now = new Date();
+      const defSession =
+        now.getMonth() >= 8
+          ? `${now.getFullYear()}/${now.getFullYear() + 1}`
+          : `${now.getFullYear() - 1}/${now.getFullYear()}`;
+      const defTerm =
+        CFG.terms[now.getMonth() >= 8 ? 0 : now.getMonth() <= 3 ? 1 : 2];
+      async function sha(code, salt) {
+        const buf = await crypto.subtle.digest(
+          "SHA-256",
+          new TextEncoder().encode(salt + ":" + code),
+        );
+        return [...new Uint8Array(buf)]
+          .map((x) => x.toString(16).padStart(2, "0"))
+          .join("");
+      }
+      const genCode = () =>
+        String(
+          (crypto.getRandomValues(new Uint32Array(1))[0] % 900000) + 100000,
+        );
+      function toast(msg) {
+        document.querySelectorAll(".toast").forEach((t) => t.remove());
+        const t = document.createElement("div");
+        t.className = "toast";
+        t.textContent = msg;
+        document.body.appendChild(t);
+        setTimeout(() => t.remove(), 3800);
+      }
+      function modal(html) {
+        closeModal();
+        const m = document.createElement("div");
+        m.className = "modal";
+        m.id = "modal";
+        m.innerHTML = `<div class="sheet" role="dialog" aria-modal="true">${html}</div>`;
+        m.addEventListener("click", (e) => {
+          if (e.target === m) closeModal();
+        });
+        document.body.appendChild(m);
+        return m.firstElementChild;
+      }
+      function closeModal() {
+        const m = $("#modal");
+        if (m) m.remove();
+      }
+      function ask(msg, label = "Confirm") {
+        return new Promise((res) => {
+          const s = modal(
+            `<p>${esc(msg)}</p><div class="row end"><button class="btn ghost" data-r="0">Cancel</button><button class="btn danger" data-r="1">${esc(label)}</button></div>`,
+          );
+          s.addEventListener("click", (e) => {
+            const b = e.target.closest("[data-r]");
+            if (b) {
+              closeModal();
+              res(b.dataset.r === "1");
+            }
+          });
+        });
+      }
+      function showCredentials(title, lines) {
+        const s = modal(
+          `<h3>${esc(title)}</h3><p class="muted">Give these details to the person now. The access code is stored only in scrambled form and cannot be shown again (you can reset it later).</p>${lines.map((l) => `<div><label>${esc(l[0])}</label><div class="code">${esc(l[1])}</div></div>`).join("")}<div class="row end gap"><button class="btn" data-x>Done</button></div>`,
+        );
+        s.querySelector("[data-x]").onclick = closeModal;
+      }
+      function openAdmissionForm() {
+        const form = modal(`
+          <h3>Admission Application</h3>
+          <p class="muted">Complete the form below and click Apply. Your details will be sent to our WhatsApp number for follow-up.</p>
+          <div class="fgrid">
+            <div><label>Child's full name</label><input id="a-name"></div>
+            <div><label>Gender</label><select id="a-gender"><option>Male</option><option>Female</option></select></div>
+            <div><label>Birth date</label><input id="a-dob" type="date"></div>
+            <div><label>Class applying for</label><select id="a-class">${CFG.classes.map((c) => `<option>${esc(c)}</option>`).join("")}</select></div>
+            <div><label>Parent / guardian name</label><input id="a-parent"></div>
+            <div><label>Parent phone number</label><input id="a-phone" inputmode="tel" placeholder="e.g. 09130578594"></div>
+            <div><label>Current school (optional)</label><input id="a-school"></div>
+            <div><label>Address</label><input id="a-address"></div>
+            <div style="grid-column:1/-1"><label>Additional notes</label><textarea id="a-notes" rows="4" placeholder="Any important information about the child"></textarea></div>
+          </div>
+          <div class="row end gap">
+            <button class="btn ghost" data-close>Cancel</button>
+            <button class="btn" id="apply-admission">Apply</button>
+          </div>
+        `);
+        form.querySelector("[data-close]").onclick = closeModal;
+        form.querySelector("#apply-admission").onclick = () => {
+          const payload = {
+            childName: $("#a-name").value.trim(),
+            gender: $("#a-gender").value,
+            dob: $("#a-dob").value,
+            className: $("#a-class").value,
+            parentName: $("#a-parent").value.trim(),
+            phone: $("#a-phone").value.trim(),
+            currentSchool: $("#a-school").value.trim(),
+            address: $("#a-address").value.trim(),
+            notes: $("#a-notes").value.trim(),
+          };
+
+          if (
+            !payload.childName ||
+            !payload.parentName ||
+            !payload.phone ||
+            !payload.address
+          ) {
+            toast(
+              "Please fill in the child name, parent name, phone and address.",
+            );
+            return;
+          }
+
+          const details = [
+            "*Admission Application*",
+            "",
+            `Child Name: ${payload.childName}`,
+            `Gender: ${payload.gender}`,
+            `Date of Birth: ${payload.dob || "Not provided"}`,
+            `Class Applying For: ${payload.className}`,
+            `Parent / Guardian Name: ${payload.parentName}`,
+            `Parent Phone: ${payload.phone}`,
+            `Current School: ${payload.currentSchool || "Not provided"}`,
+            `Address: ${payload.address}`,
+            `Notes: ${payload.notes || "None"}`,
+          ].join("\n");
+
+          const url = `https://wa.me/2349130578594?text=${encodeURIComponent(details)}`;
+          closeModal();
+          window.open(url, "_blank", "noopener,noreferrer");
+          toast("Your admission request has been prepared in WhatsApp.");
+        };
+      }
+      async function run(fn) {
+        try {
+          await fn();
+        } catch (e) {
+          console.warn(e);
+          if (e && e.code === "invalid_argument")
+            toast(
+              "Not allowed. Your account may not have permission to save this. Ask the school admin.",
+            );
+          else if (e && e.code === "quota_exceeded")
+            toast("Storage limit reached.");
+          else toast("Something went wrong. Please try again.");
+        }
+      }
+
+      /* ---------- state ---------- */
+      const OWNER_ADMIN_CREDENTIAL = "abdulsalamsulyman552@gmail.com";
+
+      const S = {
+        db: null,
+        user: null,
+        isOwner: false,
+        view: "home",
+        auth: null,
+        tab: "",
+        students: [],
+        staff: [],
+        parents: [],
+        finance: {},
+        synced: false,
+        onData: null,
+        role: "parent",
+        ready: false,
+      };
+
+      async function init() {
+        $("#yr").textContent = new Date().getFullYear();
+        $("#contactCard").innerHTML = `
+    <p><b>Address</b><br><span class="muted">${esc(CFG.address)}</span></p>
+    <p><b>Phone</b><br><span class="muted">${esc(CFG.phone)}</span></p>
+    <p><b>Email</b><br><span class="muted">${esc(CFG.email)}</span></p>
+    <p style="margin:0"><b>Office hours</b><br><span class="muted">${esc(CFG.hours)}</span></p>`;
+        try {
+          if (window.claude && claude.use) {
+            S.db = await claude.use("db");
+            S.user = await claude.use("user");
+          }
+        } catch (e) {
+          S.db = null;
+        }
+        try {
+          S.isOwner = S.user ? await S.user.isOwner() : false;
+        } catch (e) {}
+        S.ready = true;
+        if (S.view === "login") renderLogin();
+      }
+
+      function startSync() {
+        if (!S.db || S.synced) return;
+        S.synced = true;
+        const sub = (name, key, after) =>
+          S.db.collection(name).onSnapshot(
+            (snap) => {
+              S[key] = snap.docs
+                .map((d) => ({ id: d.id, ...d.data() }))
+                .sort(byName);
+              S.onData && S.onData();
+            },
+            (e) => console.warn(name, e && e.code),
+          );
+        sub("students", "students");
+        if (S.isOwner) {
+          sub("staff", "staff");
+          sub("parents", "parents");
+          S.db.collection("finance").onSnapshot(
+            (snap) => {
+              S.finance = Object.fromEntries(
+                snap.docs.map((d) => [d.id, d.data()]),
+              );
+              S.onData && S.onData();
+            },
+            (e) => console.warn("finance", e && e.code),
+          );
+        }
+      }
+
+      /* ---------- navigation ---------- */
+      function go(view) {
+        if (view === "admin" && !S.isOwner) {
+          toast(
+            "Admin access is restricted. Only the school owner can open this dashboard.",
+          );
+          S.auth = null;
+          return go("login");
+        }
+        S.view = view;
+        S.onData = null;
+        ["home", "login", "dash"].forEach(
+          (v) =>
+            ($("#" + v).hidden = !(
+              (v === "dash" && ["admin", "teacher", "parent"].includes(view)) ||
+              v === view
+            )),
+        );
+        const authed = !!S.auth;
+        $("#portalBtn").textContent = authed
+          ? ["admin", "teacher", "parent"].includes(view)
+            ? "Log out"
+            : "My Dashboard"
+          : "Portal Login";
+        $("#drawer").classList.remove("open");
+        if (view === "login") renderLogin();
+        if (view === "admin") {
+          S.tab = "overview";
+          renderAdmin();
+        }
+        if (view === "teacher") {
+          S.tab = "results";
+          renderTeacher();
+        }
+        if (view === "parent") {
+          S.tab = "";
+          renderParent();
+        }
+        window.scrollTo(0, 0);
+      }
+      function logout() {
+        S.auth = null;
+        S.onData = null;
+        go("home");
+      }
+
+      const ACT = {
+        home: () => go("home"),
+        menu: () => $("#drawer").classList.toggle("open"),
+        "admission-open": () => openAdmissionForm(),
+        theme: () => {
+          const dark =
+            getComputedStyle(document.documentElement)
+              .getPropertyValue("--bg")
+              .trim() === "#0d1612";
+          document.documentElement.dataset.theme = dark ? "light" : "dark";
+        },
+        anchor: (t, e) => {
+          e.preventDefault();
+          const id = t.getAttribute("href").slice(1);
+          const go2 = () => {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: "smooth" });
+          };
+          if (S.view !== "home") {
+            go("home");
+            setTimeout(go2, 50);
+          } else go2();
+          $("#drawer").classList.remove("open");
+        },
+        portal: (t, e) => {
+          if (e) e.preventDefault();
+          if (S.auth) {
+            ["admin", "teacher", "parent"].includes(S.view)
+              ? logout()
+              : go(S.auth.role);
+          } else go("login");
+        },
+        role: (t) => {
+          S.role = t.dataset.role;
+          renderLogin();
+        },
+        tab: (t) => {
+          S.tab = t.dataset.tab;
+          S.onData = null;
+          ({ admin: renderAdmin, teacher: renderTeacher })[S.view]();
+        },
+        logout,
+      };
+      document.addEventListener("click", (e) => {
+        const t = e.target.closest("[data-act]");
+        if (!t) return;
+        const f = ACT[t.dataset.act];
+        if (f) f(t, e);
+      });
+
+      /* ---------- login ---------- */
+      function renderLogin() {
+        document
+          .querySelectorAll("#roles button")
+          .forEach((b) => b.classList.toggle("on", b.dataset.role === S.role));
+        const b = $("#loginBody");
+        if (!S.db) {
+          b.innerHTML = `<p><b>Portal unavailable here.</b></p><p class="muted" style="margin:0">${S.ready ? "The portal needs the school database. Please open this page while signed in to Claude and with access shared by the school." : "Connecting…"}</p>`;
+          return;
+        }
+        startSync();
+        if (S.role === "admin") {
+          b.innerHTML = `<div class="fgrid" style="grid-template-columns:1fr"><div><label>Admin password</label><input id="a-cred" type="password" autocomplete="current-password" placeholder="Enter admin password"></div><button class="btn" data-lg="admin">Open Admin Dashboard</button></div><p class="muted" style="margin:14px 0 0;font-size:.85rem">Use the owner password provided by the academy.</p>`;
+        } else if (S.role === "teacher") {
+          b.innerHTML = `<div class="fgrid" style="grid-template-columns:1fr"><div><label>Staff ID</label><input id="l-id" autocomplete="username" placeholder="e.g. STF-001"></div><div><label>Access code</label><input id="l-code" type="password" autocomplete="current-password" inputmode="text"></div><button class="btn" data-lg="teacher">Sign in as Teacher</button></div>`;
+        } else {
+          b.innerHTML = `<div class="fgrid" style="grid-template-columns:1fr"><div><label>Phone number given to the school</label><input id="l-id" inputmode="tel" autocomplete="username" placeholder="e.g. 08012345678"></div><div><label>Access code</label><input id="l-code" type="password" autocomplete="current-password" inputmode="text"></div><button class="btn" data-lg="parent">Sign in as Parent</button></div><p class="muted" style="margin:14px 0 0;font-size:.85rem">Don't have a code? Please contact the school office.</p>`;
+        }
+      }
+      $("#loginBody").addEventListener("click", (e) => {
+        const b = e.target.closest("[data-lg]");
+        if (!b) return;
+        run(async () => {
+          const role = b.dataset.lg;
+          if (role === "admin") {
+            const cred = $("#a-cred")?.value.trim() || "";
+            if (cred !== OWNER_ADMIN_CREDENTIAL) {
+              toast(
+                "Admin access is restricted. Only the school owner can open this dashboard.",
+              );
+              return;
+            }
+            S.isOwner = true;
+            S.auth = { role: "admin", name: "Administrator" };
+            return go("admin");
+          }
+          const idv = $("#l-id").value.trim(),
+            code = $("#l-code").value.trim();
+          if (!idv || !code)
+            return toast("Enter your details and access code.");
+          if (role === "teacher") {
+            const did = slug(idv),
+              d = await S.db.doc("staff/" + did).get();
+            if (!d.exists || d.data().hash !== (await sha(code, did)))
+              return toast("Incorrect staff ID or code.");
+            const x = d.data();
+            const teacherSubjects = parseTeacherSubjects(
+              x.subject || x.subjects || [],
+            );
+            S.auth = {
+              role: "teacher",
+              id: did,
+              name: x.name,
+              subject: teacherSubjects[0] || "",
+              subjects: teacherSubjects,
+              classes: x.classes || "",
+            };
+            return go("teacher");
+          }
+          const ph = idv.replace(/\D/g, ""),
+            pid = "p" + ph,
+            d = await S.db.doc("parents/" + pid).get();
+          if (!d.exists || d.data().hash !== (await sha(code, pid)))
+            return toast("Incorrect phone number or code.");
+          S.auth = { role: "parent", id: pid, phone: ph, name: d.data().name };
+          go("parent");
+        });
+      });
+
+      /* ---------- shared dashboard bits ---------- */
+      function dashHead(pill, title) {
+        return `<div class="dash-head"><div><span class="pill">${pill}</span><h2>${title}</h2></div><button class="btn ghost sm" data-act="logout">Log out</button></div>`;
+      }
+      function tabsBar(list) {
+        return `<div class="tabs">${list.map((t) => `<button class="${S.tab === t[0] ? "on" : ""}" data-act="tab" data-tab="${t[0]}">${t[1]}</button>`).join("")}</div>`;
+      }
+      const classOptions = (sel) =>
+        `<option value="">Select class</option>` +
+        CFG.classes
+          .map(
+            (c) => `<option ${c === sel ? "selected" : ""}>${esc(c)}</option>`,
+          )
+          .join("");
+      function parseTeacherClasses(raw) {
+        return String(raw || "")
+          .split(/[\n,;]+/)
+          .map((item) => item.trim())
+          .filter(Boolean);
+      }
+      function parseTeacherSubjects(raw) {
+        const values = Array.isArray(raw)
+          ? raw
+          : String(raw || "")
+              .split(/[\n,;]+/)
+              .map((item) => item.trim());
+        return [...new Set(values.filter(Boolean).map((item) => item.trim()))];
+      }
+      function teacherAssignedClasses() {
+        if (!S.auth || S.auth.role !== "teacher") return [];
+        return parseTeacherClasses(S.auth.classes);
+      }
+      function teacherAllowedSubjects() {
+        if (!S.auth || S.auth.role !== "teacher") return [];
+        return CFG.subjects.map((s) => String(s).trim()).filter(Boolean);
+      }
+      function teacherClassOptions(selected = "") {
+        const classes = CFG.classes;
+        return (
+          `<option value="">Select class</option>` +
+          classes
+            .map(
+              (c) =>
+                `<option ${c === selected ? "selected" : ""}>${esc(c)}</option>`,
+            )
+            .join("")
+        );
+      }
+      function teacherCanTeachSubject(subject) {
+        if (!S.auth || S.auth.role !== "teacher") return false;
+        return true;
+      }
+      const termOptions = (sel) =>
+        CFG.terms
+          .map(
+            (c) => `<option ${c === sel ? "selected" : ""}>${esc(c)}</option>`,
+          )
+          .join("");
+
+      function normalizePhone(value) {
+        return String(value || "").replace(/\D/g, "");
+      }
+      function isStudentLinkedToParent(student, parentPhone) {
+        const targetPhone = normalizePhone(parentPhone);
+        if (!targetPhone) return false;
+        const studentPhones = [
+          student && student.guardianPhone,
+          student && student.parentPhone,
+          student && student.phone,
+        ];
+        return studentPhones.some(
+          (phone) => normalizePhone(phone) === targetPhone,
+        );
+      }
+      function validPhone(value) {
+        const p = normalizePhone(value);
+        return p.length >= 10 && p.length <= 15;
+      }
+      function setPhoneVerificationState(message, isGood) {
+        const status = document.getElementById("s-phone-status");
+        if (!status) return;
+        status.textContent = message;
+        status.style.color = isGood ? "var(--ok)" : "var(--danger)";
+      }
+      function clearPhoneVerification() {
+        S.phoneVerification = { phone: "", code: "", verified: false };
+        setPhoneVerificationState("Not verified yet.", false);
+      }
+      function verifyGuardianPhone() {
+        const phone = normalizePhone($("#s-phone").value);
+        if (!validPhone(phone))
+          return toast(
+            "Enter a valid guardian phone number before verifying it.",
+          );
+        const code = String(Math.floor(100000 + Math.random() * 900000));
+        S.phoneVerification = { phone, code, verified: false };
+        const sheet = modal(`
+    <h3>Verify guardian phone</h3>
+    <p class="muted">A 6-digit code was generated for ${esc(phone)}. Enter it below to verify the guardian before saving the student.</p>
+    <div class="gap"><label>Verification code</label><input id="verify-code" inputmode="numeric" maxlength="6" placeholder="123456"></div>
+    <div class="note gap">Demo code: <b>${esc(code)}</b></div>
+    <div class="row end gap"><button class="btn ghost" data-close>Cancel</button><button class="btn" data-verify>Verify</button></div>
+  `);
+        sheet.querySelector("[data-close]").onclick = closeModal;
+        sheet.querySelector("[data-verify]").onclick = () => {
+          const entered = normalizePhone(
+            sheet.querySelector("#verify-code").value,
+          );
+          if (entered === S.phoneVerification.code) {
+            S.phoneVerification.verified = true;
+            setPhoneVerificationState(`Verified: ${phone}`, true);
+            closeModal();
+            toast("Phone number verified.");
+          } else {
+            setPhoneVerificationState(
+              "Verification failed. Please try again.",
+              false,
+            );
+            toast("The verification code is incorrect.");
+          }
+        };
+      }
+
+      /* =====================================================
+   ADMIN
+   ===================================================== */
+      function renderAdmin() {
+        if (!S.isOwner) return logout();
+        $("#dashBody").innerHTML =
+          dashHead("Admin", "Assalamu alaikum 👋") +
+          tabsBar([
+            ["overview", "Overview"],
+            ["students", "Students & Fees"],
+            ["staff", "Staff"],
+            ["parents", "Parents"],
+          ]) +
+          `<div id="tabbody"></div>`;
+        const b = $("#tabbody");
+        if (S.tab === "overview") {
+          S.onData = drawOverview;
+          drawOverview();
+        }
+        if (S.tab === "students") {
+          b.innerHTML = `
+      <div class="card"><h3>Add a student</h3>
+        <div class="fgrid">
+          <div><label>Full name</label><input id="s-name"></div>
+          <div><label>Admission no. (optional)</label><input id="s-adm" placeholder="Auto-generated if empty"></div>
+          <div><label>Class</label><select id="s-cls">${classOptions("")}</select></div>
+          <div><label>Gender</label><select id="s-gender"><option>Male</option><option>Female</option></select></div>
+          <div><label>Parent / guardian name</label><input id="s-gname"></div>
+          <div>
+            <label>Guardian phone</label>
+            <div class="row" style="gap:8px">
+              <input id="s-phone" inputmode="tel" style="flex:1">
+              <button class="btn ghost sm" id="verify-phone-btn" type="button">Verify</button>
+            </div>
+            <small id="s-phone-status" class="muted" style="display:block;margin-top:6px">Not verified yet.</small>
+          </div>
+          <div><label>Parent access code (optional)</label><input id="s-code" inputmode="text" placeholder="Auto-generated if new parent"></div>
+          <div><label>Opening balance owed (${CFG.currency})</label><input id="s-bal" type="number" min="0" value="0"></div>
+        </div>
+        <div class="row gap"><button class="btn" id="addStu">Add student</button></div>
+      </div>
+      <div class="card gap"><div class="fgrid"><div><label>Search</label><input id="q-s" placeholder="Name or admission no."></div><div><label>Class</label><select id="q-c">${classOptions("").replace("Select class", "All classes")}</select></div></div></div>
+      <div class="gap" id="stu-list"></div>`;
+          S.onData = drawStudentList;
+          drawStudentList();
+          $("#q-s").oninput = drawStudentList;
+          $("#q-c").onchange = drawStudentList;
+          $("#addStu").onclick = () => run(addStudent);
+          $("#verify-phone-btn").onclick = () => verifyGuardianPhone();
+          $("#s-phone").addEventListener("input", () => {
+            const phone = normalizePhone($("#s-phone").value);
+            if (
+              S.phoneVerification.phone &&
+              phone !== S.phoneVerification.phone
+            ) {
+              clearPhoneVerification();
+            }
+          });
+          clearPhoneVerification();
+        }
+        if (S.tab === "staff") {
+          b.innerHTML = `
+      <div class="card"><h3>Add a staff member</h3>
+        <div class="fgrid">
+          <div><label>Full name</label><input id="f-name"></div>
+          <div><label>Staff ID (optional)</label><input id="f-id" placeholder="Auto-generated if empty"></div>
+          <div><label>Role</label><select id="f-role"><option>Teacher</option><option>Bursar</option><option>Administrative staff</option><option>Other</option></select></div>
+          <div><label>Subject(s), comma separated</label><input id="f-sub" placeholder="e.g. Mathematics, Physics"></div>
+          <div><label>Classes handled</label><input id="f-cls" placeholder="e.g. JSS 1, JSS 2"></div>
+          <div><label>Phone</label><input id="f-phone" inputmode="tel"></div>
+          <div><label>Access code (optional)</label><input id="f-code" inputmode="text" placeholder="Auto-generated if empty"></div>
+        </div>
+        <div class="row gap"><button class="btn" id="addStaff">Add staff</button></div>
+      </div>
+      <div class="gap" id="staff-list"></div>`;
+          S.onData = drawStaffList;
+          drawStaffList();
+          $("#addStaff").onclick = () => run(addStaff);
+        }
+        if (S.tab === "parents") {
+          b.innerHTML = `<div class="note">Parents sign in with their phone number and access code. They can only see their own children's results and attendance, never fees.</div><div class="gap" id="par-list"></div>`;
+          S.onData = drawParents;
+          drawParents();
+        }
+      }
+
+      function drawOverview() {
+        const b = $("#tabbody");
+        if (!b) return;
+        const bals = S.students.map(
+          (s) => (S.finance[s.id] || {}).balance || 0,
+        );
+        const owing = bals.filter((x) => x > 0),
+          total = owing.reduce((a, x) => a + x, 0);
+        const perClass = CFG.classes
+          .map((c) => [c, S.students.filter((s) => s.cls === c).length])
+          .filter((x) => x[1]);
+        b.innerHTML = `
+    <div class="stats">
+      <div class="stat"><b>${S.students.length}</b><span>Students</span></div>
+      <div class="stat"><b>${S.staff.length}</b><span>Staff</span></div>
+      <div class="stat"><b>${S.parents.length}</b><span>Parent accounts</span></div>
+      <div class="stat"><b class="${total > 0 ? "neg" : ""}">${money(total)}</b><span>Outstanding · ${owing.length} owing</span></div>
+    </div>
+    <div class="card gap"><h3>Students per class</h3>${perClass.length ? perClass.map((x) => `<div class="row" style="justify-content:space-between;border-bottom:1px solid var(--line);padding:6px 0"><span>${esc(x[0])}</span><b>${x[1]}</b></div>`).join("") : `<p class="muted" style="margin:0">No students yet. Add your first one under “Students & Fees”.</p>`}</div>
+    <div class="note gap">Fee balances are stored in a part of the database that only your owner account can read. Teachers and parents never see them.</div>`;
+      }
+
+      function nextAdm() {
+        const yy = String(new Date().getFullYear()).slice(2);
+        let n = S.students.length + 1,
+          a;
+        do {
+          a = `SAA/${yy}/${String(n++).padStart(3, "0")}`;
+        } while (S.students.some((s) => s.adm === a));
+        return a;
+      }
+      async function addStudent() {
+        const v = (id) => $("#" + id).value.trim();
+        const name = v("s-name"),
+          cls = v("s-cls"),
+          gname = v("s-gname"),
+          phone = normalizePhone(v("s-phone"));
+        if (!name || !cls || !gname || !validPhone(phone))
+          return toast(
+            "Enter name, class, guardian name and a valid phone number.",
+          );
+        if (
+          !S.phoneVerification ||
+          !S.phoneVerification.verified ||
+          S.phoneVerification.phone !== phone
+        )
+          return toast(
+            "Please verify the guardian phone number before adding the student.",
+          );
+        const bal = Math.max(0, Number(v("s-bal") || 0)),
+          adm = v("s-adm") || nextAdm();
+        const studentId = `stu-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+        await S.db.doc("students/" + studentId).set({
+          id: studentId,
+          name,
+          adm,
+          cls,
+          gender: v("s-gender"),
+          guardianName: gname,
+          guardianPhone: phone,
+          parentPhone: phone,
+          createdAt: Date.now(),
+        });
+        await S.db.doc("finance/" + studentId).set({
+          balance: bal,
+          history: bal
+            ? [
+                {
+                  t: Date.now(),
+                  type: "Opening balance",
+                  amount: bal,
+                  note: "",
+                },
+              ]
+            : [],
+          updatedAt: Date.now(),
+        });
+        const pid = "p" + phone,
+          pd = await S.db.doc("parents/" + pid).get(),
+          given = v("s-code");
+        let code = null;
+        if (!pd.exists) {
+          code = given || genCode();
+          await S.db.doc("parents/" + pid).set({
+            name: gname,
+            phone,
+            hash: await sha(code, pid),
+            createdAt: Date.now(),
+          });
+        } else if (given) {
+          code = given;
+          await S.db
+            .doc("parents/" + pid)
+            .update({ hash: await sha(code, pid) });
+        }
+        ["s-name", "s-adm", "s-gname", "s-phone", "s-code"].forEach(
+          (i) => ($("#" + i).value = ""),
+        );
+        $("#s-bal").value = 0;
+        clearPhoneVerification();
+        if (code)
+          showCredentials("Student added ✔", [
+            ["Parent login phone", phone],
+            ["Parent access code", code],
+          ]);
+        else toast("Student added. This guardian already has a parent login.");
+      }
+      function drawStudentList() {
+        const box = $("#stu-list");
+        if (!box) return;
+        const q = ($("#q-s")?.value || "").toLowerCase(),
+          c = $("#q-c")?.value || "";
+        const list = S.students.filter(
+          (s) =>
+            (!c || s.cls === c) &&
+            (!q || (s.name + " " + s.adm).toLowerCase().includes(q)),
+        );
+        if (!list.length) {
+          box.innerHTML = `<div class="note">${S.students.length ? "No students match your search." : "No students yet."}</div>`;
+          return;
+        }
+        box.innerHTML = `<div class="tw"><table><thead><tr><th>Student</th><th>Class</th><th>Guardian</th><th>Balance owed</th><th></th></tr></thead><tbody>${list
+          .map((s) => {
+            const bal = (S.finance[s.id] || {}).balance || 0;
+            return `<tr><td><b>${esc(s.name)}</b><br><span class="muted" style="font-size:.8rem">${esc(s.adm)}</span></td><td>${esc(s.cls)}</td><td>${esc(s.guardianName)}<br><span class="muted" style="font-size:.8rem">${esc(s.guardianPhone)}</span></td><td class="${bal > 0 ? "neg" : "pos"}">${money(bal)}</td><td><div class="row" style="flex-wrap:nowrap"><button class="btn sm" data-bal="${esc(s.id)}">Balance</button><button class="btn sm danger" data-del="${esc(s.id)}">Remove</button></div></td></tr>`;
+          })
+          .join("")}</tbody></table></div>`;
+      }
+      $("#dashBody").addEventListener("click", (e) => {
+        const bal = e.target.closest("[data-bal]"),
+          del = e.target.closest("[data-del]"),
+          ds = e.target.closest("[data-dstaff]"),
+          rs = e.target.closest("[data-rstaff]"),
+          rp = e.target.closest("[data-rpar]"),
+          dp = e.target.closest("[data-dpar]");
+        if (bal) run(() => openBalance(bal.dataset.bal));
+        if (del) run(() => removeStudent(del.dataset.del));
+        if (ds) run(() => removeStaff(ds.dataset.dstaff));
+        if (rs) run(() => resetStaff(rs.dataset.rstaff));
+        if (rp) run(() => resetParent(rp.dataset.rpar));
+        if (dp) run(() => removeParent(dp.dataset.dpar));
+      });
+      async function removeStudent(id) {
+        const s = S.students.find((x) => x.id === id);
+        if (!s) return;
+        if (
+          !(await ask(
+            `Remove ${s.name} permanently? Their fee record and exam results will be deleted too.`,
+            "Remove",
+          ))
+        )
+          return;
+        const recs = await S.db
+          .collection("records")
+          .where("studentId", "==", id)
+          .get();
+        for (const d of recs.docs) await S.db.doc("records/" + d.id).delete();
+        await S.db.doc("finance/" + id).delete();
+        await S.db.doc("students/" + id).delete();
+        if (
+          !S.students.some(
+            (x) => x.id !== id && x.guardianPhone === s.guardianPhone,
+          )
+        )
+          await S.db.doc("parents/p" + s.guardianPhone).delete();
+        toast("Student removed.");
+      }
+      async function openBalance(id) {
+        const s = S.students.find((x) => x.id === id);
+        if (!s) return;
+        const f = S.finance[id] || { balance: 0, history: [] };
+        const sh = modal(`
+    <h3>${esc(s.name)}</h3>
+    <p class="muted" style="margin-bottom:6px">${esc(s.cls)} · ${esc(s.adm)}</p>
+    <div class="stat"><span>Current balance owed</span><b class="${f.balance > 0 ? "neg" : "pos"}">${money(f.balance || 0)}</b></div>
+    <div class="fgrid gap">
+      <div><label>Action</label><select id="b-type"><option value="charge">Add charge (fees due)</option><option value="pay">Record payment received</option><option value="set">Set balance to exact amount</option></select></div>
+      <div><label>Amount (${CFG.currency})</label><input id="b-amt" type="number" min="0" inputmode="decimal"></div>
+    </div>
+    <div class="gap"><label>Note (optional)</label><input id="b-note" placeholder="e.g. Second term tuition"></div>
+    <div class="row end gap"><button class="btn ghost" data-x>Close</button><button class="btn" data-save>Save</button></div>
+    ${
+      (f.history || []).length
+        ? `<h3 class="gap" style="font-size:1.1rem">Recent activity</h3>${f.history
+            .slice(0, 8)
+            .map(
+              (h) =>
+                `<div class="row" style="justify-content:space-between;border-bottom:1px solid var(--line);padding:6px 0;font-size:.88rem"><span>${new Date(h.t).toLocaleDateString()} · ${esc(h.type)}${h.note ? " · " + esc(h.note) : ""}</span><b>${money(h.amount)}</b></div>`,
+            )
+            .join("")}`
+        : ""
+    }`);
+        sh.querySelector("[data-x]").onclick = closeModal;
+        sh.querySelector("[data-save]").onclick = () =>
+          run(async () => {
+            const amt = Number($("#b-amt").value),
+              type = $("#b-type").value,
+              note = $("#b-note").value.trim();
+            if (!(amt >= 0) || $("#b-amt").value === "")
+              return toast("Enter an amount.");
+            const cur = (await S.db.doc("finance/" + id).get()).data() || {
+              balance: 0,
+              history: [],
+            };
+            let nb = cur.balance || 0,
+              label;
+            if (type === "charge") {
+              nb += amt;
+              label = "Charge";
+            }
+            if (type === "pay") {
+              nb -= amt;
+              label = "Payment";
+            }
+            if (type === "set") {
+              nb = amt;
+              label = "Balance set";
+            }
+            await S.db.doc("finance/" + id).set({
+              balance: nb,
+              history: [
+                { t: Date.now(), type: label, amount: amt, note },
+                ...(cur.history || []),
+              ].slice(0, 40),
+              updatedAt: Date.now(),
+            });
+            closeModal();
+            toast("Balance updated: " + money(nb));
+          });
+      }
+
+      function nextStaffId() {
+        let n = S.staff.length + 1,
+          a;
+        do {
+          a = "STF-" + String(n++).padStart(3, "0");
+        } while (S.staff.some((s) => s.id === slug(a)));
+        return a;
+      }
+      async function addStaff() {
+        const v = (id) => $("#" + id).value.trim();
+        const name = v("f-name");
+        if (!name) return toast("Enter the staff member's name.");
+        const sid = (v("f-id") || nextStaffId()).toUpperCase(),
+          did = slug(sid);
+        if (S.staff.some((s) => s.id === did))
+          return toast("That staff ID already exists.");
+        const code = v("f-code") || genCode();
+        await S.db.doc("staff/" + did).set({
+          name,
+          staffId: sid,
+          role: v("f-role"),
+          subject: v("f-sub"),
+          classes: v("f-cls"),
+          phone: v("f-phone"),
+          hash: await sha(code, did),
+          createdAt: Date.now(),
+        });
+        ["f-name", "f-id", "f-sub", "f-cls", "f-phone", "f-code"].forEach(
+          (i) => ($("#" + i).value = ""),
+        );
+        showCredentials("Staff member added ✔", [
+          ["Staff ID", sid],
+          ["Access code", code],
+        ]);
+      }
+      function drawStaffList() {
+        const box = $("#staff-list");
+        if (!box) return;
+        if (!S.staff.length) {
+          box.innerHTML = `<div class="note">No staff added yet.</div>`;
+          return;
+        }
+        box.innerHTML = `<div class="tw"><table><thead><tr><th>Name</th><th>Role</th><th>Subjects / classes</th><th></th></tr></thead><tbody>${S.staff.map((s) => `<tr><td><b>${esc(s.name)}</b><br><span class="muted" style="font-size:.8rem">${esc(s.staffId)} · ${esc(s.phone || "")}</span></td><td>${esc(s.role)}</td><td>${esc(s.subject || "-")}<br><span class="muted" style="font-size:.8rem">${esc(s.classes || "")}</span></td><td><div class="row" style="flex-wrap:nowrap"><button class="btn sm ghost" data-rstaff="${esc(s.id)}">Reset code</button><button class="btn sm danger" data-dstaff="${esc(s.id)}">Remove</button></div></td></tr>`).join("")}</tbody></table></div>`;
+      }
+      async function removeStaff(id) {
+        const s = S.staff.find((x) => x.id === id);
+        if (!s) return;
+        if (
+          !(await ask(
+            `Remove ${s.name} from the staff list? This only deletes that staff account and keeps the rest of the school data intact.`,
+            "Remove",
+          ))
+        )
+          return;
+        await S.db.doc("staff/" + id).delete();
+        toast("Staff account removed.");
+      }
+      async function resetStaff(id) {
+        const s = S.staff.find((x) => x.id === id);
+        if (!s) return;
+        const box = modal(`
+          <h3>Reset staff access code</h3>
+          <p class="muted">Set a new access code for ${esc(s.name)} (${esc(s.staffId)}).</p>
+          <div class="gap"><label>New access code</label><input id="manual-staff-code" inputmode="text" placeholder="Enter alphabet letters only"></div>
+          <div class="row end gap"><button class="btn ghost" data-close>Cancel</button><button class="btn" data-save>Update</button></div>
+        `);
+        box.querySelector("[data-close]").onclick = closeModal;
+        box.querySelector("[data-save]").onclick = () =>
+          run(async () => {
+            const code = box.querySelector("#manual-staff-code").value.trim();
+            if (!/^[A-Za-z]+$/.test(code)) {
+              return toast("Enter alphabet letters only.");
+            }
+            await S.db.doc("staff/" + id).update({ hash: await sha(code, id) });
+            closeModal();
+            showCredentials("Access code updated", [
+              ["Staff ID", s.staffId],
+              ["Access code", code],
+            ]);
+          });
+      }
+      function drawParents() {
+        const box = $("#par-list");
+        if (!box) return;
+        if (!S.parents.length) {
+          box.innerHTML = `<div class="note">Parent accounts are created automatically when you add a student.</div>`;
+          return;
+        }
+        box.innerHTML = `<div class="tw"><table><thead><tr><th>Guardian</th><th>Children</th><th></th></tr></thead><tbody>${S.parents
+          .map(
+            (p) =>
+              `<tr><td><b>${esc(p.name)}</b><br><span class="muted" style="font-size:.8rem">${esc(p.phone)}</span></td><td>${esc(
+                S.students
+                  .filter((s) => s.guardianPhone === p.phone)
+                  .map((s) => s.name)
+                  .join(", ") || "-",
+              )}</td><td><div class="row" style="flex-wrap:nowrap"><button class="btn sm ghost" data-rpar="${esc(p.id)}">Reset code</button><button class="btn sm danger" data-dpar="${esc(p.id)}">Remove</button></div></td></tr>`,
+          )
+          .join("")}</tbody></table></div>`;
+      }
+      async function removeParent(id) {
+        const p = S.parents.find((x) => x.id === id);
+        if (!p) return;
+        if (
+          !(await ask(
+            `Remove ${p.name}'s parent account? This only removes the parent login and will not delete any student records or fees.`,
+            "Remove",
+          ))
+        )
+          return;
+        await S.db.doc("parents/" + id).delete();
+        toast("Parent account removed.");
+      }
+      async function resetParent(id) {
+        const p = S.parents.find((x) => x.id === id);
+        if (!p) return;
+        const box = modal(`
+          <h3>Reset parent access code</h3>
+          <p class="muted">Set a new access code for ${esc(p.name)} (${esc(p.phone)}).</p>
+          <div class="gap"><label>New access code</label><input id="manual-parent-code" inputmode="text" placeholder="Enter alphabet letters only"></div>
+          <div class="row end gap"><button class="btn ghost" data-close>Cancel</button><button class="btn" data-save>Update</button></div>
+        `);
+        box.querySelector("[data-close]").onclick = closeModal;
+        box.querySelector("[data-save]").onclick = () =>
+          run(async () => {
+            const code = box.querySelector("#manual-parent-code").value.trim();
+            if (!/^[A-Za-z]+$/.test(code)) {
+              return toast("Enter alphabet letters only.");
+            }
+            await S.db
+              .doc("parents/" + id)
+              .update({ hash: await sha(code, id) });
+            closeModal();
+            showCredentials("Parent access code updated", [
+              ["Login phone", p.phone],
+              ["Access code", code],
+            ]);
+          });
+      }
+
+      /* =====================================================
+   TEACHER
+   ===================================================== */
+      function renderTeacher() {
+        const a = S.auth;
+        if (!a) return go("login");
+        $("#dashBody").innerHTML =
+          dashHead("Teacher", "Assalamu alaikum, " + esc(a.name)) +
+          tabsBar([
+            ["results", "Exam Results"],
+            ["attendance", "Attendance"],
+          ]) +
+          `<div id="tabbody"></div>`;
+        startSync();
+        const b = $("#tabbody");
+        if (S.tab === "results") {
+          const teacherSubjects = teacherAllowedSubjects();
+          const defaultSubject = teacherSubjects.includes(a.subject)
+            ? a.subject
+            : teacherSubjects[0] || "";
+          b.innerHTML = `
+      <div class="card"><div class="fgrid three">
+        <div><label>Class</label><select id="r-cls">${teacherClassOptions("")}</select></div>
+        <div><label>Term</label><select id="r-term">${termOptions(defTerm)}</select></div>
+        <div><label>Session</label><input id="r-sess" value="${defSession}"></div>
+        <div style="grid-column:1/-1"><label>Subject</label><select id="r-sub">${teacherSubjects.length ? teacherSubjects.map((s) => `<option value="${esc(s)}" ${s === defaultSubject ? "selected" : ""}>${esc(s)}</option>`).join("") : `<option value="">No subject assigned</option>`}</select></div>
+      </div></div>
+      <div class="gap" id="r-grid"><div class="note">Choose a class and subject to upload results.</div></div>`;
+          ["r-cls", "r-term", "r-sess", "r-sub"].forEach(
+            (i) => ($("#" + i).onchange = () => run(loadResults)),
+          );
+          $("#r-grid").addEventListener("input", rowCalc);
+          S.onData = () => {
+            if ($("#r-cls") && $("#r-cls").value && !$("#r-grid input"))
+              run(loadResults);
+          };
+          if (defaultSubject) run(loadResults);
+        }
+        if (S.tab === "attendance") {
+          b.innerHTML = `
+      <div class="card"><div class="fgrid"><div><label>Class</label><select id="t-cls">${teacherClassOptions("")}</select></div><div><label>Date</label><input id="t-date" type="date" value="${today()}"></div></div></div>
+      <div class="gap" id="t-grid"><div class="note">Choose any class to take attendance.</div></div>`;
+          ["t-cls", "t-date"].forEach(
+            (i) => ($("#" + i).onchange = () => run(loadAttendance)),
+          );
+          S.onData = () => {
+            if ($("#t-cls") && $("#t-cls").value && !$("#t-grid input"))
+              run(loadAttendance);
+          };
+        }
+      }
+      let loadTok = 0;
+      async function loadResults() {
+        const cls = $("#r-cls").value,
+          term = $("#r-term").value,
+          session = $("#r-sess").value.trim(),
+          subject = $("#r-sub").value.trim(),
+          box = $("#r-grid");
+        if (!cls || !session || !subject) {
+          box.innerHTML = `<div class="note">Choose a class and subject to enter scores.</div>`;
+          return;
+        }
+        if (
+          S.auth &&
+          S.auth.role === "teacher" &&
+          !teacherCanTeachSubject(subject)
+        ) {
+          box.innerHTML = `<div class="note">This subject is unavailable right now.</div>`;
+          return;
+        }
+        const list = S.students.filter((s) => s.cls === cls);
+        if (!list.length) {
+          box.innerHTML = `<div class="note">No students in ${esc(cls)} yet.</div>`;
+          return;
+        }
+        const tok = ++loadTok;
+        box.innerHTML = `<p class="muted">Loading…</p>`;
+        const snap = await S.db
+          .collection("records")
+          .where("cls", "==", cls)
+          .where("session", "==", session)
+          .where("term", "==", term)
+          .where("subject", "==", subject)
+          .get();
+        if (tok !== loadTok) return;
+        const ex = {};
+        snap.docs.forEach((d) => (ex[d.data().studentId] = d.data()));
+        box.innerHTML = `<div class="tw"><table><thead><tr><th>Student</th><th>CA /${CFG.maxCA}</th><th>Exam /${CFG.maxExam}</th><th>Total</th><th>Grade</th></tr></thead><tbody>${list
+          .map((s) => {
+            const r = ex[s.id] || {};
+            return `<tr data-sid="${esc(s.id)}" data-name="${esc(s.name)}" data-had="${r.studentId ? 1 : 0}"><td><b>${esc(s.name)}</b></td><td><input class="ca" type="number" min="0" max="${CFG.maxCA}" inputmode="decimal" value="${r.ca ?? ""}"></td><td><input class="ex" type="number" min="0" max="${CFG.maxExam}" inputmode="decimal" value="${r.exam ?? ""}"></td><td class="tot">${r.total ?? "-"}</td><td class="gr"><b>${r.total != null ? gradeOf(r.total)[1] : "-"}</b></td></tr>`;
+          })
+          .join(
+            "",
+          )}</tbody></table></div><div class="row end gap"><button class="btn" id="saveRes">Save results</button></div>`;
+        $("#saveRes").onclick = () => run(saveResults);
+      }
+      function rowCalc(e) {
+        const tr = e.target.closest("tr[data-sid]");
+        if (!tr) return;
+        const inp = e.target;
+        const max = inp.classList.contains("ca") ? CFG.maxCA : CFG.maxExam;
+        if (Number(inp.value) > max) inp.value = max;
+        if (Number(inp.value) < 0) inp.value = 0;
+        const ca = tr.querySelector(".ca").value,
+          ex = tr.querySelector(".ex").value;
+        if (ca === "" && ex === "") {
+          tr.querySelector(".tot").textContent = "-";
+          tr.querySelector(".gr").innerHTML = "<b>-</b>";
+          return;
+        }
+        const t = Number(ca || 0) + Number(ex || 0);
+        tr.querySelector(".tot").textContent = t;
+        tr.querySelector(".gr").innerHTML = `<b>${gradeOf(t)[1]}</b>`;
+      }
+      async function saveResults() {
+        const cls = $("#r-cls").value,
+          term = $("#r-term").value,
+          session = $("#r-sess").value.trim(),
+          subject = $("#r-sub").value.trim();
+        if (
+          S.auth &&
+          S.auth.role === "teacher" &&
+          !teacherCanTeachSubject(subject)
+        ) {
+          toast("This subject is unavailable right now.");
+          return;
+        }
+        const rows = [...document.querySelectorAll("#r-grid tr[data-sid]")];
+        let n = 0;
+        $("#saveRes").disabled = true;
+        try {
+          for (const tr of rows) {
+            const sid = tr.dataset.sid,
+              ca = tr.querySelector(".ca").value,
+              ex = tr.querySelector(".ex").value;
+            const id = `${sid}__${slug(session)}__${slug(term)}__${slug(subject)}`;
+            if (ca === "" && ex === "") {
+              if (tr.dataset.had === "1") {
+                await S.db.doc("records/" + id).delete();
+                tr.dataset.had = "0";
+              }
+              continue;
+            }
+            await S.db.doc("records/" + id).set({
+              studentId: sid,
+              studentName: tr.dataset.name,
+              cls,
+              session,
+              term,
+              subject,
+              ca: Number(ca || 0),
+              exam: Number(ex || 0),
+              total: Number(ca || 0) + Number(ex || 0),
+              by: S.auth.name,
+              updatedAt: Date.now(),
+            });
+            tr.dataset.had = "1";
+            n++;
+          }
+          toast(`Saved ${n} result${n === 1 ? "" : "s"} for ${subject}.`);
+        } finally {
+          const b = $("#saveRes");
+          if (b) b.disabled = false;
+        }
+      }
+      async function loadAttendance() {
+        const cls = $("#t-cls").value,
+          date = $("#t-date").value,
+          box = $("#t-grid");
+        if (!cls || !date) {
+          box.innerHTML = `<div class="note">Choose a class to take attendance.</div>`;
+          return;
+        }
+        const list = S.students.filter((s) => s.cls === cls);
+        if (!list.length) {
+          box.innerHTML = `<div class="note">No students in ${esc(cls)} yet.</div>`;
+          return;
+        }
+        const tok = ++loadTok;
+        const d = await S.db.doc(`attendance/${date}_${slug(cls)}`).get();
+        if (tok !== loadTok) return;
+        const marks = (d.exists && d.data().marks) || {};
+        box.innerHTML = `<div class="tw"><table><thead><tr><th>Student</th><th>Status</th></tr></thead><tbody>${list
+          .map((s) => {
+            const m = marks[s.id] || "P";
+            return `<tr data-sid="${esc(s.id)}"><td><b>${esc(s.name)}</b></td><td><div class="seg">${[
+              ["P", "Present", "p"],
+              ["A", "Absent", "a"],
+              ["L", "Late", "l"],
+            ]
+              .map(
+                (o) =>
+                  `<label><input type="radio" name="m-${esc(s.id)}" value="${o[0]}" ${m === o[0] ? "checked" : ""}><span class="${o[2]}">${o[0]}</span></label>`,
+              )
+              .join("")}</div></td></tr>`;
+          })
+          .join(
+            "",
+          )}</tbody></table></div><div class="row end gap"><span class="muted" style="font-size:.85rem">P = Present · A = Absent · L = Late</span><button class="btn" id="saveAtt">Save attendance</button></div>`;
+        $("#saveAtt").onclick = () =>
+          run(async () => {
+            const mk = {};
+            document.querySelectorAll("#t-grid tr[data-sid]").forEach((tr) => {
+              mk[tr.dataset.sid] = tr.querySelector("input:checked").value;
+            });
+            await S.db.doc(`attendance/${date}_${slug(cls)}`).set({
+              date,
+              cls,
+              marks: mk,
+              by: S.auth.name,
+              updatedAt: Date.now(),
+            });
+            toast("Attendance saved for " + cls + ".");
+          });
+      }
+
+      /* =====================================================
+   PARENT
+   ===================================================== */
+      let kidIdx = 0;
+      function renderParent() {
+        const a = S.auth;
+        if (!a) return go("login");
+        startSync();
+        $("#dashBody").innerHTML =
+          dashHead("Parent", "Assalamu alaikum, " + esc(a.name)) +
+          `<div id="tabbody"></div>`;
+        S.onData = drawKids;
+        drawKids();
+      }
+      function drawKids() {
+        const b = $("#tabbody");
+        if (!b) return;
+        if (b.dataset.ready) return;
+        const parentPhone = normalizePhone(S.auth.phone);
+        const kids = S.students.filter((s) =>
+          isStudentLinkedToParent(s, parentPhone),
+        );
+        if (!kids.length) {
+          b.innerHTML = `<div class="note">${S.students.length ? "No children are linked to this phone number yet. Please contact the school office." : "Loading…"}</div>`;
+          return;
+        }
+        if (kidIdx >= kids.length) kidIdx = 0;
+        b.dataset.ready = "1";
+        b.innerHTML =
+          (kids.length > 1
+            ? `<div class="tabs">${kids.map((k, i) => `<button class="${i === kidIdx ? "on" : ""}" data-kid="${i}">${esc(k.name.split(" ")[0])}</button>`).join("")}</div>`
+            : "") + `<div id="kidBody"></div>`;
+        b.querySelectorAll("[data-kid]").forEach(
+          (x) =>
+            (x.onclick = () => {
+              kidIdx = Number(x.dataset.kid);
+              b.dataset.ready = "";
+              drawKids();
+            }),
+        );
+        run(() => drawKid(kids[kidIdx]));
+      }
+      async function drawKid(k) {
+        const box = $("#kidBody");
+        box.innerHTML = `<p class="muted">Loading…</p>`;
+        const [rs, at] = await Promise.all([
+          S.db.collection("records").where("studentId", "==", k.id).get(),
+          S.db.collection("attendance").where("cls", "==", k.cls).get(),
+        ]);
+        const recs = rs.docs.map((d) => d.data());
+        let present = 0,
+          absent = 0,
+          late = 0;
+        at.docs.forEach((d) => {
+          const m = (d.data().marks || {})[k.id];
+          if (m === "P") present++;
+          if (m === "A") absent++;
+          if (m === "L") late++;
+        });
+        const days = present + absent + late,
+          pct = days ? Math.round(((present + late) / days) * 100) : null;
+        const keys = [
+          ...new Map(
+            recs.map((r) => [
+              r.session + "|" + r.term,
+              { session: r.session, term: r.term, t: r.updatedAt || 0 },
+            ]),
+          ).values(),
+        ].sort(
+          (a, b) =>
+            b.session.localeCompare(a.session) ||
+            CFG.terms.indexOf(b.term) - CFG.terms.indexOf(a.term),
+        );
+        box.innerHTML = `
+    <div class="card"><h3 style="margin-bottom:2px">${esc(k.name)}</h3><span class="muted">${esc(k.cls)} · ${esc(k.adm)}</span>
+      <div class="stats gap" style="grid-template-columns:repeat(3,1fr)"><div class="stat"><b>${pct === null ? "-" : pct + "%"}</b><span>Attendance</span></div><div class="stat"><b>${absent}</b><span>Days absent</span></div><div class="stat"><b>${late}</b><span>Days late</span></div></div>
+    </div>
+    <div class="card gap"><h3>Exam results</h3>${keys.length ? `<label>Term</label><select id="p-term">${keys.map((x, i) => `<option value="${i}">${esc(x.term)} · ${esc(x.session)}</option>`).join("")}</select><div id="p-res" class="gap"></div>` : `<p class="muted" style="margin:0">No results have been published yet.</p>`}</div>`;
+        if (keys.length) {
+          const show = () => {
+            const x = keys[Number($("#p-term").value)];
+            const rows = recs
+              .filter((r) => r.session === x.session && r.term === x.term)
+              .sort((a, b) => a.subject.localeCompare(b.subject));
+            const avg = rows.reduce((s, r) => s + r.total, 0) / rows.length;
+            $("#p-res").innerHTML =
+              `<div class="tw"><table><thead><tr><th>Subject</th><th>CA</th><th>Exam</th><th>Total</th><th>Grade</th></tr></thead><tbody>${rows.map((r) => `<tr><td>${esc(r.subject)}</td><td>${r.ca}</td><td>${r.exam}</td><td><b>${r.total}</b></td><td><b>${gradeOf(r.total)[1]}</b> <span class="muted" style="font-size:.8rem">${gradeOf(r.total)[2]}</span></td></tr>`).join("")}</tbody></table></div><p class="gap" style="margin-bottom:0">Average score: <span class="avg">${avg.toFixed(1)}</span> · Subjects: ${rows.length}</p>`;
+          };
+          $("#p-term").onchange = show;
+          show();
+        }
+      }
+
+      /* start */
+      go("home");
+      init();
+    </script>
+  </body>
+</html>
